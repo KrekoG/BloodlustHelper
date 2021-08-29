@@ -1,6 +1,6 @@
 
 local FactoryInterface = { }
-IFrameFactory("1.0"):Register("coolDown", "Icon", FactoryInterface)
+IFrameFactory("1.0"):Register("BloodlustHelper", "Icon", FactoryInterface)
 
 function FactoryInterface:Create(name)
 	local frame = CreateFrame("Frame", name, UIParent)

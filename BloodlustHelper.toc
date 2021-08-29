@@ -1,9 +1,9 @@
 ## Interface: 11200
-## Title: coolDown
-## Notes: Enhanced Spell Cooldown Bar
-## Author: wereHamster/asmdel
+## Title: BloodlustHelper
+## Notes: A cooldown tracker for bloodlust on vanilla+
+## Author: KrekoG, modifying wereHamster/asmdel's work
 ## Dependencies: IFrameManager
-## SavedVariablesPerCharacter: coolDownOptions
+## SavedVariablesPerCharacter: BloodlustHelperOptions
 
 # -- IFrameFactory
 ## OptionalDeps: IFrameFactory
@@ -16,7 +16,7 @@ Options.lua
 State.lua
 Items.lua
 
-coolDown.lua
-coolDownFont.lua
+BloodlustHelper.lua
+BloodlustHelperFont.lua
 
-coolDown.xml
+BloodlustHelper.xml

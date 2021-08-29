@@ -1,5 +1,5 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
-	<Button name="coolDownDock" frameStrata="LOW" enableMouse="true" movable="true" parent="UIParent">
+	<Button name="BloodlustHelperDock" frameStrata="LOW" enableMouse="true" movable="true" parent="UIParent">
 		<TitleRegion setAllPoints="true"/>
 		<Size>
 			<AbsDimension x="80" y="32"/>
@@ -24,13 +24,13 @@
 		</Anchors>
 		<Scripts>
 			<OnLoad>
-				coolDown:onLoad()
+				BloodlustHelper:onLoad()
 			</OnLoad>
 			<OnEvent>
-				coolDown:onEvent()
+				BloodlustHelper:onEvent()
 			</OnEvent>
 			<OnUpdate>
-				coolDown:onUpdate()
+				BloodlustHelper:onUpdate()
 			</OnUpdate>
 		</Scripts>
 	</Button>

@@ -1,7 +1,7 @@
 
 local IFrameFactory = IFrameFactory("1.0")
 
-coolDownButton = { }
+BloodlustHelperButton = { }
 
 local frameDockTable = {
 	["Top"] = { "BOTTOM", nil, "TOP", 0, -2 },
@@ -10,57 +10,57 @@ local frameDockTable = {
     ["Right"] = { "LEFT", nil, "RIGHT", -1, 0 },
 }
 
-coolDown = { }
+BloodlustHelper = { }
 
 local iface = IFrameManager:Interface()
 function iface:getName(frame)
-    return "coolDown"
+    return "BloodlustHelper"
 end
 
-function coolDown:onLoad()
-    coolDownDock:RegisterEvent("VARIABLES_LOADED")
-    coolDownDock:RegisterEvent("PLAYER_ENTERING_WORLD")
-    coolDownDock:RegisterEvent("UPDATE_SHAPESHIFT_FORMS")
-    coolDownDock:RegisterEvent("SPELLS_CHANGED")
-    coolDownDock:RegisterEvent("SPELL_UPDATE_COOLDOWN")
-    coolDownDock:RegisterEvent("CURRENT_SPELL_CAST_CHANGED")
-    coolDownDock:RegisterEvent("BAG_UPDATE_COOLDOWN")
-    coolDownDock:RegisterEvent("UNIT_INVENTORY_CHANGED")
+function BloodlustHelper:onLoad()
+    BloodlustHelperDock:RegisterEvent("VARIABLES_LOADED")
+    BloodlustHelperDock:RegisterEvent("PLAYER_ENTERING_WORLD")
+    BloodlustHelperDock:RegisterEvent("UPDATE_SHAPESHIFT_FORMS")
+    BloodlustHelperDock:RegisterEvent("SPELLS_CHANGED")
+    BloodlustHelperDock:RegisterEvent("SPELL_UPDATE_COOLDOWN")
+    BloodlustHelperDock:RegisterEvent("CURRENT_SPELL_CAST_CHANGED")
+    BloodlustHelperDock:RegisterEvent("BAG_UPDATE_COOLDOWN")
+    BloodlustHelperDock:RegisterEvent("UNIT_INVENTORY_CHANGED")
 
-    coolDownDock:SetBackdropBorderColor(0, 0, 0, 1)
-    coolDownDock:SetBackdropColor(0, 0, 0, 1)
+    BloodlustHelperDock:SetBackdropBorderColor(0, 0, 0, 1)
+    BloodlustHelperDock:SetBackdropColor(0, 0, 0, 1)
 
-    coolDownDock:Hide()
+    BloodlustHelperDock:Hide()
 
-    IFrameManager:Register(coolDownDock, iface)
+    IFrameManager:Register(BloodlustHelperDock, iface)
 end
 
-function coolDown:onEvent()
-	coolDownDock:Show()
+function BloodlustHelper:onEvent()
+	BloodlustHelperDock:Show()
 end
 
-function coolDown:onUpdate()
-	coolDownDock:Hide()
+function BloodlustHelper:onUpdate()
+	BloodlustHelperDock:Hide()
 
-	IFrameFactory:Clear("coolDown", "Button")
-	IFrameFactory:Clear("coolDown", "Icon")
+	IFrameFactory:Clear("BloodlustHelper", "Button")
+	IFrameFactory:Clear("BloodlustHelper", "Icon")
 
-	coolDownOptionsValidate()
-	
-	coolDownDock:SetScale(coolDownOptions.frameScale)
+	BloodlustHelperOptionsValidate()
 
-    local buttonDockInfo = frameDockTable[coolDownOptions.buttonDock]
-    local iconDockInfo = frameDockTable[coolDownOptions.iconDock]
-	local frameParent = coolDownDock
-	for _, tbl in coolDownState do
-		local buttonFrame = IFrameFactory:Create("coolDown", "Button")
-		buttonFrame:SetScale(coolDownOptions.frameScale)
-		
+	BloodlustHelperDock:SetScale(BloodlustHelperOptions.frameScale)
+
+    local buttonDockInfo = frameDockTable[BloodlustHelperOptions.buttonDock]
+    local iconDockInfo = frameDockTable[BloodlustHelperOptions.iconDock]
+	local frameParent = BloodlustHelperDock
+	for _, tbl in BloodlustHelperState do
+		local buttonFrame = IFrameFactory:Create("BloodlustHelper", "Button")
+		buttonFrame:SetScale(BloodlustHelperOptions.frameScale)
+
 		buttonFrame.tbl = tbl
 		buttonFrame.bar:SetMinMaxValues(0, tbl[3])
 		buttonFrame:ClearAllPoints()
 		buttonDockInfo[2] = frameParent
-		if (frameParent == coolDownDock) then
+		if (frameParent == BloodlustHelperDock) then
 			local relativeTo = buttonDockInfo[3]
 			buttonDockInfo[3] = buttonDockInfo[1]
 			buttonDockInfo[5], buttonDockInfo[4] = 0, 0
@@ -69,13 +69,13 @@ function coolDown:onUpdate()
 		else
 			buttonFrame:SetPoint(unpack(buttonDockInfo))
 		end
-		
+
 
 		local iconParent = buttonFrame
 
 		for iconIndex, spellInfo in tbl[4] do
-			local iconFrame = IFrameFactory:Create("coolDown", "Icon")
-			
+			local iconFrame = IFrameFactory:Create("BloodlustHelper", "Icon")
+
 			iconFrame:ClearAllPoints()
 			iconDockInfo[2] = iconParent
 			iconFrame:SetPoint(unpack(iconDockInfo))

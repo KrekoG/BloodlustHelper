@@ -1,5 +1,5 @@
 
-coolDownOptions = { }
+BloodlustHelperOptions = { }
 
 local defaultOptions = {
 	frameScale = 1,
@@ -15,7 +15,7 @@ local defaultOptions = {
 
 
 local function checkOption(option)
-	coolDownOptions[option] = coolDownOptions[option] or defaultOptions[option]
+	BloodlustHelperOptions[option] = BloodlustHelperOptions[option] or defaultOptions[option]
 end
 
 local frameDockTable = {
@@ -26,19 +26,19 @@ local frameDockTable = {
 }
 
 
-function coolDownOptionsValidate()
+function BloodlustHelperOptionsValidate()
 	checkOption("frameScale")
-	
+
 	checkOption("buttonDock")
-	local buttonDirectionInfo = frameDockTable[coolDownOptions.buttonDock]
+	local buttonDirectionInfo = frameDockTable[BloodlustHelperOptions.buttonDock]
 	if (buttonDirectionInfo == nil) then
-		coolDownOptions.buttonDock = "Top"
+		BloodlustHelperOptions.buttonDock = "Top"
 	end
 
 	checkOption("iconDock")
-	local iconDockInfo = frameDockTable[coolDownOptions.iconDock]
+	local iconDockInfo = frameDockTable[BloodlustHelperOptions.iconDock]
 	if (iconDockInfo == nil) then
-		coolDownOptions.iconDock = "Right"
+		BloodlustHelperOptions.iconDock = "Right"
 	end
 
 	checkOption("minSpellDuration")

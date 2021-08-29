@@ -1,6 +1,6 @@
 
 local FactoryInterface = { }
-IFrameFactory("1.0"):Register("coolDown", "Button", FactoryInterface)
+IFrameFactory("1.0"):Register("BloodlustHelper", "Button", FactoryInterface)
 
 local function time(left)
 	local min = math.floor(left / 60)
@@ -29,8 +29,8 @@ local function onUpdate()
 		end
 		this.bar:SetValue(left)
 	else
-		coolDownStateRemove(this.tbl)
-		coolDown:onUpdate()
+		BloodlustHelperStateRemove(this.tbl)
+		BloodlustHelper:onUpdate()
 	end
 end
 
@@ -53,9 +53,9 @@ function FactoryInterface:Create(name)
 		}
 	}
 
-	local backdropColor = coolDownOptions.backdropColor
-	local barColor = coolDownOptions.barColor
-	local textColor = coolDownOptions.textColor
+	local backdropColor = BloodlustHelperOptions.backdropColor
+	local barColor = BloodlustHelperOptions.barColor
+	local textColor = BloodlustHelperOptions.textColor
 
 	frame:SetBackdrop(backdropTable)
 	frame:SetBackdropBorderColor(backdropColor.r, backdropColor.g, backdropColor.b, backdropColor.a)
@@ -65,11 +65,11 @@ function FactoryInterface:Create(name)
 	frame.bar:SetPoint("Center", frame)
 	frame.bar:SetWidth(70)
 	frame.bar:SetHeight(22)
-	frame.bar:SetStatusBarTexture("Interface\\AddOns\\coolDown\\Textures\\Smooth")
+	frame.bar:SetStatusBarTexture("Interface\\AddOns\\BloodlustHelper\\Textures\\Smooth")
 	frame.bar:SetStatusBarColor(barColor.r, barColor.g, barColor.b, barColor.a)
 
 	frame.label = frame.bar:CreateFontString(nil, "OVERLAY")
-	frame.label:SetFontObject(coolDownFont)
+	frame.label:SetFontObject(BloodlustHelperFont)
 	frame.label:SetPoint("CENTER", frame, "CENTER", 0, -1)
 	frame.label:SetJustifyH("CENTER")
 	frame.label:SetTextColor(textColor.r, textColor.g, textColor.b, textColor.a)
