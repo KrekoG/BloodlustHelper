@@ -52,39 +52,10 @@ local function stateSpells()
 	end
 end
 
-local function stateInventory()
-end
-
-local function stateContainers()
-end
-
-
 local function onEvent()
 	this:Show()
-
-	if (event == "PLAYER_ENTERING_WORLD") then
-		BloodlustHelperState = { }
+	if (event == "SPELL_UPDATE_COOLDOWN") then
 		this.Class[1] = true
-		this.Class[2] = true
-		this.Class[3] = true
-	elseif (event == "UPDATE_SHAPESHIFT_FORMS") then
-		this.Class[1] = true
-	elseif (event == "SPELLS_CHANGED") then
-		this.Class[1] = true
-	elseif (event == "SPELL_UPDATE_COOLDOWN") then
-		this.Class[1] = true
-		this.Class[2] = true
-	elseif (event == "CURRENT_SPELL_CAST_CHANGED") then
-		this.Class[1] = true
-	elseif (event == "BAG_UPDATE_COOLDOWN") then
-		this.Class[3] = true
-	elseif (event == "UNIT_INVENTORY_CHANGED") then
-		for idx, tbl in ipairs(BloodlustHelperState) do
-			if (tbl[1] == "I") then
-				table.remove(BloodlustHelperState, idx)
-			end
-		end
-		this.Class[2] = true
 	end
 end
 
@@ -96,13 +67,7 @@ end
 
 
 local Slave = CreateFrame("Frame", nil, WorldFrame)
-Slave:RegisterEvent("PLAYER_ENTERING_WORLD")
-Slave:RegisterEvent("UPDATE_SHAPESHIFT_FORMS")
-Slave:RegisterEvent("SPELLS_CHANGED")
 Slave:RegisterEvent("SPELL_UPDATE_COOLDOWN")
-Slave:RegisterEvent("CURRENT_SPELL_CAST_CHANGED")
-Slave:RegisterEvent("BAG_UPDATE_COOLDOWN")
-Slave:RegisterEvent("UNIT_INVENTORY_CHANGED")
 Slave:SetScript("OnEvent", onEvent)
 Slave:SetScript("OnUpdate", onUpdate)
 Slave:Hide()
@@ -116,8 +81,6 @@ end
 
 function BloodlustHelperStateUpdate()
 	Slave.Class[1] = Slave.Class[1] and stateSpells()
-	Slave.Class[2] = Slave.Class[2] and stateInventory()
-	Slave.Class[3] = Slave.Class[3] and stateContainers()
 
 	table.sort(BloodlustHelperState, sort)
 end

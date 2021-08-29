@@ -18,14 +18,7 @@ function iface:getName(frame)
 end
 
 function BloodlustHelper:onLoad()
-    BloodlustHelperDock:RegisterEvent("VARIABLES_LOADED")
-    BloodlustHelperDock:RegisterEvent("PLAYER_ENTERING_WORLD")
-    BloodlustHelperDock:RegisterEvent("UPDATE_SHAPESHIFT_FORMS")
-    BloodlustHelperDock:RegisterEvent("SPELLS_CHANGED")
     BloodlustHelperDock:RegisterEvent("SPELL_UPDATE_COOLDOWN")
-    BloodlustHelperDock:RegisterEvent("CURRENT_SPELL_CAST_CHANGED")
-    BloodlustHelperDock:RegisterEvent("BAG_UPDATE_COOLDOWN")
-    BloodlustHelperDock:RegisterEvent("UNIT_INVENTORY_CHANGED")
 
     BloodlustHelperDock:SetBackdropBorderColor(0, 0, 0, 1)
     BloodlustHelperDock:SetBackdropColor(0, 0, 0, 1)
@@ -49,8 +42,8 @@ function BloodlustHelper:onUpdate()
 
 	BloodlustHelperDock:SetScale(BloodlustHelperOptions.frameScale)
 
-    local buttonDockInfo = frameDockTable[BloodlustHelperOptions.buttonDock]
-    local iconDockInfo = frameDockTable[BloodlustHelperOptions.iconDock]
+  local buttonDockInfo = frameDockTable[BloodlustHelperOptions.buttonDock]
+  local iconDockInfo = frameDockTable[BloodlustHelperOptions.iconDock]
 	local frameParent = BloodlustHelperDock
 	for _, tbl in BloodlustHelperState do
 		local buttonFrame = IFrameFactory:Create("BloodlustHelper", "Button")
