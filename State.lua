@@ -28,6 +28,7 @@ end
 
 
 local bookTypes = { BOOKTYPE_SPELL, BOOKTYPE_PET }
+
 local function stateSpells()
 	for _, type in bookTypes do
 		local spellID = 1
@@ -52,38 +53,9 @@ local function stateSpells()
 end
 
 local function stateInventory()
-	for i=0, 1 do
-		local slotID = GetInventorySlotInfo("Trinket"..i.."Slot")
-		local start, duration, hasCooldown = GetInventoryItemCooldown("player", slotID)
-		if (hasCooldown == 1) then
-			if (start > 0) then
-				if (duration > BloodlustHelperOptions.minItemDuration) then
-					insert("I", start, duration, GetInventoryItemTexture("player", slotID))
-				end
-			end
-		end
-	end
 end
 
 local function stateContainers()
-	for bagIndex=0, 4 do
-		for invIndex=1, GetContainerNumSlots(bagIndex) do
-			local link = GetContainerItemLink(bagIndex, invIndex)
-			if (link) then
-				local start, duration, hasCooldown = GetContainerItemCooldown(bagIndex, invIndex)
-	    		if (start > 0) then
-	    			local _, _, itemID = string.find(link, "item:(%d+):")
-					local _, _, _, _, type = GetItemInfo(itemID)
-					if (type == "Consumable") then
-						if (duration > BloodlustHelperOptions.minItemDuration) then
-							local texture = BloodlustHelperItems[tonumber(itemID)] or (GetContainerItemInfo(bagIndex, invIndex))
-							insert("C", start, duration, texture)
-						end
-					end
-				end
-			end
-		end
-	end
 end
 
 
