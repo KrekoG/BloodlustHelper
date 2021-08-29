@@ -35,19 +35,18 @@ local function stateSpells()
 		local spell = GetSpellName(spellID, type)
 
 		while (spell) do
-			local start, duration, hasCooldown = GetSpellCooldown(spellID, type)
-			if (hasCooldown == 1) then
-				if (start > 0) then
-					local min = BloodlustHelperOptions.minSpellDuration
-					local max = BloodlustHelperOptions.maxSpellDuration
-					if (duration > min and duration < max) then
-						insert("S", start, duration, GetSpellTexture(spellID, type))
-					end
-				end
-			end
+			if not(spell == "Bloodlust") then
+				spellID = spellID + 1
+				spell = GetSpellName(spellID, type)
+			else
 
-			spellID = spellID + 1
-			spell = GetSpellName(spellID, type)
+				local start, duration, hasCooldown = GetSpellCooldown(spellID, type)
+				if (hasCooldown == 1 and start > 0 and duration > 2) then
+							insert("S", start, 180, GetSpellTexture(spellID, type))
+				end
+
+				spell = nil
+			end
 		end
 	end
 end
