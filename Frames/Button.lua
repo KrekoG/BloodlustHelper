@@ -21,6 +21,8 @@ local function onUpdate()
 		return
 	end
 
+	this.targetName:SetText(this.tbl[5]);
+
 	local left = this.tbl[3] - ( GetTime() - this.tbl[2] )
 	if (left > 0) then
 		local label = time(left)
@@ -67,6 +69,12 @@ function FactoryInterface:Create(name)
 	frame.bar:SetHeight(22)
 	frame.bar:SetStatusBarTexture("Interface\\AddOns\\BloodlustHelper\\Textures\\Smooth")
 	frame.bar:SetStatusBarColor(barColor.r, barColor.g, barColor.b, barColor.a)
+
+	frame.targetName = frame.bar:CreateFontString(nil, "OVERLAY")
+	frame.targetName:SetFontObject(BloodlustHelperFont)
+	frame.targetName:SetPoint("LEFT", frame, "RIGHT", 30, -1)
+	frame.targetName:SetJustifyH("CENTER")
+	frame.targetName:SetTextColor(textColor.r, textColor.g, textColor.b, textColor.a)
 
 	frame.label = frame.bar:CreateFontString(nil, "OVERLAY")
 	frame.label:SetFontObject(BloodlustHelperFont)

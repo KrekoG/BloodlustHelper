@@ -9,7 +9,13 @@ local function insert(type, start, duration, texture)
 		end
 	end
 
-	local tbl = { type, start, duration, { [texture] = true } }
+	local target = UnitName("target")
+
+	if UnitName("target") == nil or UnitIsEnemy("target", "player") then
+		target = UnitName("player")
+	end
+
+	local tbl = { type, start, duration, { [texture] = true }, target}
 	table.insert(BloodlustHelperState, tbl)
 end
 
